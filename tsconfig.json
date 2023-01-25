@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@/*": ["src/*"],
+        "@utils/*":  ["src/utils/*"],
+        "@components/*":  ["src/components/*"],
+        "@config/*":  ["src/config/*"],
+        "@views/*":  ["src/views/*"],
+        "@assets/*":  ["src/assets/*"],
+        "@store/*":  ["src/store/*"],
+        "@reducers/*":  ["src/store/reducers/*"],
+        "@actions/*":  ["src/store/actionCreater/*"],
+      },
+      "target": "es2017",
+      "allowJs": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "module": "commonjs",
+      "jsx": "react"
+    },
+    "exclude": ["node_modules"],
+  }
