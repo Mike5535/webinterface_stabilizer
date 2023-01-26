@@ -22,7 +22,7 @@ const optimization = () => {
 
 module.exports = {
     mode: "development",
-    entry: './src/index.tsx',
+    entry: './src/index.ts',
     devServer: {
         static: path.join(__dirname, "dist"),
         port: 3001,
@@ -44,7 +44,7 @@ module.exports = {
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
             {
-                test: /\.tsx$/,
+                test: /\.(ts|tsx)$/,
                 exclude: path.resolve(__dirname, './node_modules'),
                 use: ['babel-loader', 'ts-loader'],
             },
