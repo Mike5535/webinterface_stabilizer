@@ -22,10 +22,14 @@ const optimization = () => {
 
 module.exports = {
     mode: "development",
-    entry: './src/index.ts',
+    entry: './src/index.tsx',
     devServer: {
         static: path.join(__dirname, "dist"),
         port: 3001,
+        historyApiFallback: true,
+        devMiddleware: {
+            publicPath: '/'
+        },
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

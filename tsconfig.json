@@ -17,7 +17,7 @@
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
       "module": "commonjs",
-      "jsx": "react"
+      "jsx": "react-jsx"
     },
     "exclude": ["node_modules"],
   }
