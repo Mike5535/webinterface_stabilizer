@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit'
 import {
-    actionSwitchMode
+    actionSwitchModeSuccess
 } from '@actions/commonActions'
 
 interface InitState {
@@ -12,8 +12,8 @@ const initialState = { mode: 'PWM', controlType: 'none' } as InitState
 
 export const commonReducer = createReducer(initialState, (builder) => {
     builder
-      .addCase(actionSwitchMode, (state, action) => {
-        console.log('reducer', state.mode)
+      .addCase(actionSwitchModeSuccess, (state, action) => {
+        console.log('reducer', state.mode);
         state.mode = action.payload;
       })
   })
