@@ -38,7 +38,7 @@ module.exports = {
         clean: true,
     },
     resolve: {
-        extensions: ['.js', '.json', '.tsx'],
+        extensions: ['.ts', '.tsx', '.js', '.json'],
         plugins: [new TsconfigPathsPlugin()],
     },
     module: {
