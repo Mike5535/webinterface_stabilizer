@@ -1,6 +1,6 @@
 export const modeCards = [
     {
-        modeSvg: `<svg width="95" height="73" viewBox="0 0 95 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+        modeSvg: `<svg class='mode-card__svg' width="95" height="73" viewBox="0 0 95 73" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line y1="72.5" x2="3" y2="72.5" stroke="black"/>
         <line x1="2.5" y1="73" x2="2.5" stroke="black"/>
         <line x1="3" y1="0.5" x2="14" y2="0.5" stroke="black"/>
@@ -19,7 +19,7 @@ export const modeCards = [
         link: '/PWM',
     },
     {
-        modeSvg: `<svg width="95" height="73" viewBox="0 0 95 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+        modeSvg: `<svg class='mode-card__svg' width="95" height="73" viewBox="0 0 95 73" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line y1="72.5" x2="3" y2="72.5" stroke="black"/>
         <line x1="2.5" y1="73" x2="2.5" stroke="black"/>
         <line x1="33.5" y1="73" x2="33.5" stroke="black"/>
@@ -41,7 +41,7 @@ export const modeCards = [
         link: '/PFM',
     },
     {
-        modeSvg: `<svg width="95" height="75" viewBox="0 0 95 75" fill="none" xmlns="http://www.w3.org/2000/svg">
+        modeSvg: `<svg class='mode-card__svg' width="95" height="75" viewBox="0 0 95 75" fill="none" xmlns="http://www.w3.org/2000/svg">
         <line y1="74.5" x2="95" y2="74.5" stroke="black"/>
         <line y1="1.5" x2="95" y2="1.5" stroke="black"/>
         <line x1="0.434122" y1="60.7519" x2="8.43412" y2="74.7519" stroke="black"/>

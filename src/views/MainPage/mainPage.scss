@@ -6,4 +6,20 @@
     align-items: flex-start;
     height: 100vh;
     background-color: #D0E9FF;
+
+    &__author {
+        display: flex;
+        flex-flow: row;
+        justify-content: flex-end;
+        align-content: center;
+        margin: 25px 15px 0 0;
+        font-size: 15px;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
 }

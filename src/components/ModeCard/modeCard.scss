@@ -25,6 +25,17 @@
         transition: 0.12s;
     }
 
+    &:hover &__svg {
+        height: 73px;
+        transition: 0.12s;
+    }
+
+    &__svg {
+        display: flex;
+        height: 68px;
+        transition: 0.12s;
+    }
+
     &__tittle {
         font-size: 18px;
         margin-top: 10px;
