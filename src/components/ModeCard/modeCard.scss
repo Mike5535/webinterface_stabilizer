@@ -1,0 +1,33 @@
+@mixin flex-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mode-card {
+    @include flex-center;
+    width: 150px;
+    height: auto;
+    cursor: pointer;
+
+    &__background {
+        @include flex-center;
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+        background-color: rgba(0, 117, 255, 0.54);
+        transition: 0.12s;
+    }
+
+    &:hover &__background {
+        background-color: rgba(0, 117, 255, 0.75);
+        transition: 0.12s;
+    }
+
+    &__tittle {
+        font-size: 18px;
+        margin-top: 10px;
+        color: black;
+    }
+}
