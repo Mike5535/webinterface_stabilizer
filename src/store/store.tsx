@@ -8,7 +8,7 @@ export const setupStore = () => {
     const sagaMiddleware = createSagaMiddleware();
     
     const store = configureStore({
-      reducer: {...commonReducer},
+      reducer: commonReducer,
       middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
     });
