@@ -1,30 +1,70 @@
+@mixin row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-top: 2px solid black;
+    min-height: 35px;
+}
+
 .pwm {
     &__menu {
         position: absolute;
         background-color: rgba(229, 246, 255, 1);
         border-radius: 4px;
-        right: 83px;
-        bottom: 60px;
+        left: 910px;
+        top: calc(33vh + 299px);
         height: auto;
-        width: 310px;
+        width: 305px;
         z-index: 10;
-    }
+        cursor: pointer;
 
-    &__menu__header {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        height: 35px;
-        padding-left: 20px;
-        color: rgba(0, 0, 0, 0.5);
-    }
+        &__down {
+            margin: 0 20px 0 auto;
+        }
 
-    &__menu__row {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        border-top: 2px solid black;
-        min-height: 35px;
-        padding-left: 20px;
+        &__up {
+            margin: 0 20px 0 auto;
+            display: none;
+        }
+
+        &__header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 35px;
+            padding-left: 20px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        &__row {
+            @include row;
+            padding: 5px 0 5px 20px;
+        }
+
+        &__row-last {
+            @include row;
+            padding: 5px 0 10px 20px;
+        }
+
+        &__row-one {
+            @include row;
+            padding-left: 20px;
+        }
+
+        &__content {
+            display: none;
+        }
+
+        &:hover &__content {
+            display: contents;
+        }
+
+        &:hover &__up {
+            display: inline;
+        }
+
+        &:hover &__down {
+            display: none;
+        }
     }
 }
