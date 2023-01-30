@@ -5,6 +5,7 @@
     justify-content: flex-start;
     width: 100%;
     margin: 50px 0 auto 0;
+    height: inherit;
 
     &__header {
         font-size: 36px;
@@ -27,5 +28,16 @@
     &__scheme {
         height: 33vh;
         margin: 8vh 0 0 55px;
+    }
+
+    &__settings {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        height: auto;
+        padding-left: 300px;
+        margin-bottom: auto;
     }
 }

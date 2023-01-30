@@ -1,6 +1,7 @@
 import { InitState } from '@/store/reducers/commonReducers';
 import React from 'react';
 import { useSelector } from 'react-redux'
+import { BackButton } from '../BackButton/backButton';
 import { MonitoringInfo } from '../MonitoringInfo/monitoringInfo';
 import { TypeButton } from '../TypeButton/typeButton';
 
