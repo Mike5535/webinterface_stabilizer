@@ -7,6 +7,7 @@
 @import "@components/TypeButton/typeButton.scss";
 @import "@components/PwmSettings/pwmSettings.scss";
 @import "@components/BackButton/backButton.scss";
+@import "@components/PwmMenu/pwmMenu.scss";
 
 body,
 html {
@@ -26,4 +27,9 @@ button {
   text-decoration: none;
   background: none;
   cursor: pointer;
+}
+
+:active, :hover, :focus {
+  outline: 0;
+  outline-offset: 0;
 }

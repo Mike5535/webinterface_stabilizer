@@ -1,0 +1,30 @@
+.pwm {
+    &__menu {
+        position: absolute;
+        background-color: rgba(229, 246, 255, 1);
+        border-radius: 4px;
+        right: 83px;
+        bottom: 60px;
+        height: auto;
+        width: 310px;
+        z-index: 10;
+    }
+
+    &__menu__header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        height: 35px;
+        padding-left: 20px;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    &__menu__row {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        border-top: 2px solid black;
+        min-height: 35px;
+        padding-left: 20px;
+    }
+}
