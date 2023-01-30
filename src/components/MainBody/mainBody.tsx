@@ -9,7 +9,7 @@ export const MainBody = (props = null) => {
                 Цифровой понижающий стабилизатор напряжения
             </div>
             <div className="main__selector-header">
-                Выберите тип управления:
+                Выберите метод управления:
             </div>
             <div className="main__area-cards">
                 {modeCards.map(

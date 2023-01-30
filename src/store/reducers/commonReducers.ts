@@ -1,6 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit'
 import {
-    actionSwitchModeSuccess
+    actionSwitchModeSuccess,
+    actionSwitchControlTypeSuccess
 } from '@actions/commonActions'
 
 export interface InitState {
@@ -8,12 +9,18 @@ export interface InitState {
     controlType: string,
 }
 
-const initialState = { mode: 'PWM', controlType: 'none' } as InitState
+const initialState = { mode: '', controlType: 'none' } as InitState
 
 export const commonReducer = createReducer(initialState, {
   [actionSwitchModeSuccess.type]: (state, action) => {
-    console.log('reducer', state.mode);
     state.mode = action.payload;
+  },
+  [actionSwitchControlTypeSuccess.type]: (state, action) => {
+    if(state.controlType === action.payload) {
+      state.controlType = 'none';
+    } else {
+      state.controlType = action.payload;
+    }
   },
 });
   

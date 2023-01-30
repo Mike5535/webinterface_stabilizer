@@ -1,0 +1,10 @@
+.monitoring {
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-width: 340px;
+        font-size: 24px;
+        margin-top: 40px;
+    }
+}

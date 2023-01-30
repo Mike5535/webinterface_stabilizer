@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { useDispatch } from 'react-redux'
-import { actionSwitchMode } from '@actions/commonActions'
+import { useDispatch } from 'react-redux';
+import { actionSwitchMode } from '@actions/commonActions';
 
 export const ModeCard = (props = null as { modeSvg: string, titleMode: string, link: string, i?: number }) => {
     const dispatch = useDispatch()

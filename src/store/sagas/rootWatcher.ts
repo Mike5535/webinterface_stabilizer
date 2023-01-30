@@ -1,10 +1,12 @@
 import { call, all } from "redux-saga/effects";
 import {
-    watchMode
+    watchMode,
+    watchControlType,
 } from '@sagas/commonSagas'
 
 export function* rootWatcher() {
     yield all([
-        call(watchMode)
+        call(watchMode),
+        call(watchControlType)
     ]);
 }

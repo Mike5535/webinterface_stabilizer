@@ -1,0 +1,40 @@
+@mixin button-size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    min-width: 180px;
+    min-height: 35px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 0 15px;
+    user-select: none;
+}
+
+.type-button_nopressed {
+    @include button-size;
+    background-color: rgba(0, 117, 255, 0.25);
+    transition: 0.12s;
+
+    &:hover {
+        transition: 0.12s;
+        background-color: rgba(0, 117, 255, 0.35);
+        font-size: 18.75px;
+        padding-top: 1px;
+        min-height: 34px;
+    }
+}
+
+.type-button_pressed {
+    @include button-size;
+    background-color: rgba(254, 186, 43, 1);
+    transition: 0.12s;
+
+    &:hover {
+        transition: 0.12s;
+        background-color: rgba(254, 186, 43, 0.9);
+        font-size: 18.75px;
+        padding-top: 1px;
+        min-height: 34px;
+    }
+}
