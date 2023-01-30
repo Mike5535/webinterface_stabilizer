@@ -9,7 +9,7 @@ export interface InitState {
     controlType: string,
 }
 
-const initialState = { mode: '', controlType: 'none' } as InitState
+const initialState = { mode: '', controlType: '' } as InitState
 
 export const commonReducer = createReducer(initialState, {
   [actionSwitchModeSuccess.type]: (state, action) => {
@@ -17,7 +17,7 @@ export const commonReducer = createReducer(initialState, {
   },
   [actionSwitchControlTypeSuccess.type]: (state, action) => {
     if(state.controlType === action.payload) {
-      state.controlType = 'none';
+      state.controlType = '';
     } else {
       state.controlType = action.payload;
     }

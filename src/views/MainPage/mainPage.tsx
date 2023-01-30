@@ -6,7 +6,12 @@ export const MainPage = (props = null) => {
     return <div className='main-page'>
         <Monitoring />
         <div className='main-page__body'>
-            <Outlet />
+            <div className="main">
+                <div className="main__header">
+                    Цифровой понижающий стабилизатор напряжения
+                </div>
+                <Outlet />
+            </div>
             <div className='main-page__author'>
                 Разработчики: Волков М.Д., Шаповалов  И.О., Бакулин А.А.
             </div>

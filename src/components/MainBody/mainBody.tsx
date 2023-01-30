@@ -4,10 +4,7 @@ import { modeCards } from "@assets/svg/modeSvg"
 
 export const MainBody = (props = null) => {
     return (
-        <div className="main">
-            <div className="main__header">
-                Цифровой понижающий стабилизатор напряжения
-            </div>
+        <>
             <div className="main__selector-header">
                 Выберите метод управления:
             </div>
@@ -81,6 +78,6 @@ export const MainBody = (props = null) => {
                 <line x1="405" y1="157.5" x2="430" y2="157.5" stroke="black" />
                 <line x1="591.5" y1="157.5" x2="616.5" y2="157.5" stroke="black" />
             </svg>
-        </div>
+        </>
     );
 }

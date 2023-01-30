@@ -4,6 +4,23 @@ import { useSelector } from 'react-redux'
 
 export const MonitoringInfo = (props = null) => {
     const mode = useSelector((state: InitState) => state.mode)
+    const controlType = useSelector((state: InitState) => state.controlType)
+
+    if(mode && !controlType) {
+        return (
+            <div className="monitoring__off-header">
+                    Выберите режим управления
+            </div>
+        );
+    }
+
+    if(!mode && controlType) {
+        return (
+            <div className="monitoring__off-header">
+                    Выберите метод управления
+            </div>
+        );
+    }
 
     if (mode === 'PWM') {
         return (
@@ -73,7 +90,7 @@ export const MonitoringInfo = (props = null) => {
                 </div>
                 <div className="monitoring__row">
                     <div className="monitoring__row__header">
-                        Длительность имп.
+                        Длительность имп.:
                     </div>
                     <div className="monitoring__row__field">
                         5 мкс
