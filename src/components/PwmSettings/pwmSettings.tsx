@@ -9,10 +9,11 @@ import { actionSwitchMode } from '@/store/actions/commonActions';
 export const PwmSettings = () => {
     const dispatch = useDispatch();
     const mode = useSelector((state: IState) => state.common.mode)
-    if (!mode) {
+    const controlType = useSelector((state: IState) => state.common.controlType);
+
+    if (!controlType && !mode) {
         dispatch(actionSwitchMode('/PWM'));
     }
-    const controlType = useSelector((state: IState) => state.common.controlType);
 
     const handlerFreq = (e: React.FormEvent) => {
         e.preventDefault();

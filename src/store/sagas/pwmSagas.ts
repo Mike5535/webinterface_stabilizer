@@ -9,3 +9,12 @@ export function* postPwmFreq(action) {
 export function* watchPostPwmFreq() {
   yield takeEvery('SET_PWM_FREQ', postPwmFreq);
 }
+
+export function* postLawReg(action) {
+  yield call(Ajax.post, { url: '/api/pwm/set-law-reg', body: action.payload});
+  yield put({type: 'pwm/setLawRegSuccess', payload: action.payload})
+}
+
+export function* watchPostLawReg() {
+  yield takeEvery('SET_LAW_REG', postLawReg);
+}

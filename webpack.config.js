@@ -38,6 +38,12 @@ module.exports = {
             devServer.app.post("/api/switch/control-type", function (req, res) {
                 res.json();
             });
+            devServer.app.post("/api/pwm/set-frequency", function (req, res) {
+                res.json();
+            });
+            devServer.app.post("/api/pwm/set-law-reg", function (req, res) {
+                res.json();
+            });
         },
     },
     output: {
