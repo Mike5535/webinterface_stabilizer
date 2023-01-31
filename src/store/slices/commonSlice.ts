@@ -13,6 +13,9 @@ const commonSlice = createSlice({
     switchModeSuccess: (state, action: PayloadAction<string>) => {
       state.mode = action.payload;
     },
+    switchWsControl: (state, action: PayloadAction<string>) => {
+      state.controlType = action.payload;
+    },
     switchControlTypeSuccess: (state, action: PayloadAction<string>) => {
       if (state.controlType === action.payload) {
         state.controlType = '';

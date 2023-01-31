@@ -11,7 +11,7 @@ export function* watchMode() {
 }
 
 export function* requestControlType(action) {
-  yield call(Ajax.post, { url: '/api/switch/control-type', body: { mode: action.payload}});
+  yield call(Ajax.post, { url: '/api/switch/control-type', body: { control_type: action.payload}});
   yield put({type: 'common/switchControlTypeSuccess', payload: action.payload})
 }
 

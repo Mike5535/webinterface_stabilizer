@@ -5,7 +5,7 @@ import { call, put, take } from "redux-saga/effects"
 
 function initWebsocket() {
     return eventChannel(emitter => {
-        const ws = new WebSocket(wsUrl + '/client')
+        const ws = new WebSocket(wsUrl)
         ws.onopen = () => {
             console.log('opening...')
             ws.send('hello server')
@@ -22,13 +22,17 @@ function initWebsocket() {
                 console.error(`Error parsing : ${e.data}`)
             }
             if (msg) {
-                const { payload: book } = msg
+                const { payload: currentState } = msg
                 const channel = msg.channel
                 switch (channel) {
-                    // case 'ADD_BOOK':
-                    //     return emitter({ type: ADD_BOOK, book })
-                    // case 'REMOVE_BOOK':
-                    //     return emitter({ type: REMOVE_BOOK, book })
+                    case 'GET_STATE_PWM_AUTO':
+                        return {
+                            mode: emitter({ type: 'common/switchModeSuccess', payload: currentState.mode }),
+                            controlType: emitter({ type: 'common/switchWsControl', payload: currentState.control_type }),
+                            state: emitter({ type: 'pwm/setPwmStateAuto', payload: currentState.state })
+                        }
+                    case 'GET_STATE_PWM_MANUAL':
+                        return emitter({ type: 'pwm/setPwmStateManual', currentState })
                     default:
                     // nothing to do
                 }
@@ -44,7 +48,9 @@ function initWebsocket() {
 export default function* watchWS() {
     const channel = yield call(initWebsocket)
     while (true) {
-        const action = yield take(channel)
-        yield put(action)
+        const actionObject = yield take(channel)
+        yield put(actionObject.mode)
+        yield put(actionObject.controlType)
+        yield put(actionObject.state)
     }
 }
