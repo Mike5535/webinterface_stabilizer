@@ -1,12 +1,11 @@
-import { InitState } from '@/store/reducers/commonReducers';
+import { IState } from '@/store/store';
 import React from 'react';
 import { useSelector } from 'react-redux'
-import { BackButton } from '../BackButton/backButton';
 import { MonitoringInfo } from '../MonitoringInfo/monitoringInfo';
 import { TypeButton } from '../TypeButton/typeButton';
 
 export const Monitoring = (props = null) => {
-    const controlType = useSelector((state: InitState) => state.controlType)
+    const controlType = useSelector((state: IState) => state.common.controlType);
 
     return (
         <div className="monitoring__background">

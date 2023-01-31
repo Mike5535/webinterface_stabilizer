@@ -33,9 +33,12 @@ module.exports = {
 
         onAfterSetupMiddleware: function (devServer) {
             devServer.app.post("/api/switch/mode", function (req, res) {
-              res.json();
+                res.json();
             });
-          },
+            devServer.app.post("/api/switch/control-type", function (req, res) {
+                res.json();
+            });
+        },
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

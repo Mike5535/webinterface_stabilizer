@@ -1,18 +1,25 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { InitState } from '@/store/reducers/commonReducers';
-import { actionSwitchModeSuccess } from '@actions/commonActions';
+import { IState } from '@/store/store';
 import { BackButton } from '../BackButton/backButton';
 import { PwmMenu } from '../PwmMenu/pwmMenu';
+import { actionSetPwmFreq } from '@/store/actions/pwmActions';
+import { actionSwitchMode } from '@/store/actions/commonActions';
 
 export const PwmSettings = () => {
     const dispatch = useDispatch();
-    const mode = useSelector((state: InitState) => state.mode)
+    const mode = useSelector((state: IState) => state.common.mode)
     if (!mode) {
-        dispatch(actionSwitchModeSuccess('PWM'));
+        dispatch(actionSwitchMode('/PWM'));
     }
+    const controlType = useSelector((state: IState) => state.common.controlType);
 
-    const controlType = useSelector((state: InitState) => state.controlType);
+    const handlerFreq = (e: React.FormEvent) => {
+        e.preventDefault();
+        const input = (e.target as HTMLElement).querySelector('input');
+        const body = { pwm_freq: input.value };
+        dispatch(actionSetPwmFreq(body));
+    }
 
     return (
         <>
@@ -114,7 +121,7 @@ export const PwmSettings = () => {
                     <>
                         <div className='main__settings__row'>
                             Введите частоту ШИМ:
-                            <form>
+                            <form onSubmit={handlerFreq}>
                                 <input className='main__settings__input' type="text" maxLength={9} />
                             </form>
                             кГц

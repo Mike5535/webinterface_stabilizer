@@ -1,23 +1,23 @@
-import { InitState } from '@/store/reducers/commonReducers';
+import { IState } from '@/store/store';
 import React from 'react';
 import { useSelector } from 'react-redux'
 
 export const MonitoringInfo = (props = null) => {
-    const mode = useSelector((state: InitState) => state.mode)
-    const controlType = useSelector((state: InitState) => state.controlType)
+    const mode = useSelector((state: IState) => state.common.mode)
+    const controlType = useSelector((state: IState) => state.common.controlType)
 
-    if(mode && !controlType) {
+    if (mode && !controlType) {
         return (
             <div className="monitoring__off-header">
-                    Выберите режим управления
+                Выберите режим управления
             </div>
         );
     }
 
-    if(!mode && controlType) {
+    if (!mode && controlType) {
         return (
             <div className="monitoring__off-header">
-                    Выберите метод управления
+                Выберите метод управления
             </div>
         );
     }
@@ -49,14 +49,16 @@ export const MonitoringInfo = (props = null) => {
                         0 %
                     </div>
                 </div>
-                <div className="monitoring__row">
-                    <div className="monitoring__row__header">
-                        Закон регулирования:
-                    </div>
-                    <div className="monitoring__row__field">
-                        П
-                    </div>
-                </div>
+                {controlType === 'auto' ?
+                    <div className="monitoring__row">
+                        <div className="monitoring__row__header">
+                            Закон регулирования:
+                        </div>
+                        <div className="monitoring__row__field">
+                            П
+                        </div>
+                    </div> : ''
+                }
                 <div className="monitoring__row">
                     <div className="monitoring__row__header">
                         Выходное напряжение:
@@ -149,7 +151,7 @@ export const MonitoringInfo = (props = null) => {
 
     return (
         <div className="monitoring__off-header">
-                Выберите режим и метод управления
+            Выберите режим и метод управления
         </div>
     );
 }
