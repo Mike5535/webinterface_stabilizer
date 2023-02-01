@@ -40,6 +40,15 @@
         padding-left: 300px;
         margin-bottom: auto;
 
+        &__first-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: 21px;
+            margin-top: 15px;
+        }
+
         &__row {
             display: flex;
             flex-direction: row;

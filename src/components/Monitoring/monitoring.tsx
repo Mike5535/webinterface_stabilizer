@@ -6,6 +6,7 @@ import { TypeButton } from '../TypeButton/typeButton';
 
 export const Monitoring = (props = null) => {
     const controlType = useSelector((state: IState) => state.common.controlType);
+    const mode = useSelector((state: IState) => state.common.mode);
 
     return (
         <div className="monitoring__background">
@@ -19,7 +20,9 @@ export const Monitoring = (props = null) => {
             <div className='monitoring__control-type'>Режим управления</div>
             <div className='monitoring__buttons'>
                 < TypeButton tittle='Авто' isActive={controlType === 'auto' ? true : false} />
-                < TypeButton tittle='Ручной' isActive={controlType === 'manual' ? true : false} />
+                {mode === 'hysteresis' ? '' :
+                    < TypeButton tittle='Ручной' isActive={controlType === 'manual' ? true : false} />
+                }
             </div>
         </div>
     );

@@ -118,7 +118,7 @@ export const MonitoringInfo = (props = null) => {
                         Метод управления:
                     </div>
                     <div className="monitoring__row__field">
-                        Гистер.
+                        Гистерезис
                     </div>
                 </div>
                 <div className="monitoring__row">
