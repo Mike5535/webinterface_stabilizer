@@ -4,9 +4,8 @@ import { useSelector } from 'react-redux'
 
 export const MonitoringInfo = (props = null) => {
     const mode = useSelector((state: IState) => state.common.mode)
-    const controlType = useSelector((state: IState) => state.common.controlType)
 
-    if (mode && !controlType) {
+    if (mode) {
         return (
             <div className="monitoring__off-header">
                 Выберите режим управления
@@ -14,7 +13,7 @@ export const MonitoringInfo = (props = null) => {
         );
     }
 
-    if (!mode && controlType) {
+    if (!mode) {
         return (
             <div className="monitoring__off-header">
                 Выберите метод управления
@@ -49,16 +48,16 @@ export const MonitoringInfo = (props = null) => {
                         0 %
                     </div>
                 </div>
-                {controlType === 'auto' ?
-                    <div className="monitoring__row">
-                        <div className="monitoring__row__header">
-                            Закон регулирования:
-                        </div>
-                        <div className="monitoring__row__field">
-                            П
-                        </div>
-                    </div> : ''
-                }
+
+                <div className="monitoring__row">
+                    <div className="monitoring__row__header">
+                        Закон регулирования:
+                    </div>
+                    <div className="monitoring__row__field">
+                        П
+                    </div>
+                </div>
+
                 <div className="monitoring__row">
                     <div className="monitoring__row__header">
                         Выходное напряжение:

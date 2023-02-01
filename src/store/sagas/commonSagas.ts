@@ -10,12 +10,21 @@ export function* watchMode() {
     yield takeEvery('SWITCH_MODE', requestMode);
 }
 
-export function* requestControlType(action) {
-  yield call(Ajax.post, { url: '/api/switch/control-type', body: { control_type: action.payload}});
-  yield put({type: 'common/switchControlTypeSuccess', payload: action.payload})
+export function* requestStart() {
+  yield call(Ajax.post, { url: '/api/switch/start', body: {}});
+  yield put({type: 'common/startSuccess'})
 }
 
-export function* watchControlType() {
-  yield takeEvery('SWITCH_CONTROL_TYPE', requestControlType);
+export function* watchStart() {
+  yield takeEvery('START', requestStart);
+}
+
+export function* requestStop() {
+  yield call(Ajax.post, { url: '/api/switch/stop', body: {}});
+  yield put({type: 'common/stopSuccess'})
+}
+
+export function* watchStop() {
+  yield takeEvery('STOP', requestStop);
 }
  

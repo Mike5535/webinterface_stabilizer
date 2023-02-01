@@ -7,9 +7,8 @@ import { actionSwitchMode } from '@/store/actions/commonActions';
 export const HysterSettings = () => {
     const dispatch = useDispatch();
     const mode = useSelector((state: IState) => state.common.mode)
-    const controlType = useSelector((state: IState) => state.common.controlType);
 
-    if (!controlType && !mode) {
+    if (!mode) {
         dispatch(actionSwitchMode('/hysteresis'));
     }
 
@@ -100,7 +99,7 @@ export const HysterSettings = () => {
                 <line x1="602.5" y1="292" x2="602.5" y2="242" stroke="black" />
             </svg>
             <div className='main__settings'>
-                {controlType ?
+                {'' ?
                     <>
                         <div className='main__settings__first-row'>
                             Введите верхний порог напряжения:

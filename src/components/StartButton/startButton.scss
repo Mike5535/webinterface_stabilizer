@@ -1,0 +1,50 @@
+@mixin button-size {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    min-width: 160px;
+    min-height: 35px;
+    font-size: 18px;
+    cursor: pointer;
+    margin: 0 20px;
+    user-select: none;
+    transition: 0.12s;
+}
+
+@mixin button-size_hover {
+    font-size: 19px;
+    padding-top: 1px;
+    min-height: 34px;
+    transition: 0.12s;
+}
+
+.type-button__start {
+    @include button-size;
+    background-color: rgba(0, 117, 255, 0.2);
+
+    &:hover {
+        background-color: rgba(0, 117, 255, 0.3);
+        @include button-size_hover;
+    }
+}
+
+.type-button__start_active {
+    @include button-size;
+    background-color: rgba(0, 117, 255, 0.85);
+
+    &:hover {
+        background-color: rgba(0, 117, 255, 1);
+        @include button-size_hover;
+    }
+}
+
+.type-button__stop {
+    @include button-size;
+    background-color: rgba(255, 113, 113, 0.85);
+
+    &:hover {
+        background-color: rgba(255, 113, 113, 1);
+        @include button-size_hover;
+    }
+}

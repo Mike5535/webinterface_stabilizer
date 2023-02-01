@@ -6,7 +6,7 @@ export const MainBody = (props = null) => {
     return (
         <>
             <div className="main__selector-header">
-                Выберите метод управления:
+                Методы управления
             </div>
             <div className="main__area-cards">
                 {modeCards.map(

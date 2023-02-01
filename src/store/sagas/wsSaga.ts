@@ -28,7 +28,6 @@ function initWebsocket() {
                     case 'GET_STATE_PWM_AUTO':
                         return {
                             mode: emitter({ type: 'common/switchModeSuccess', payload: currentState.mode }),
-                            controlType: emitter({ type: 'common/switchWsControl', payload: currentState.control_type }),
                             state: emitter({ type: 'pwm/setPwmStateAuto', payload: currentState.state })
                         }
                     case 'GET_STATE_PWM_MANUAL':
@@ -50,7 +49,6 @@ export default function* watchWS() {
     while (true) {
         const actionObject = yield take(channel)
         yield put(actionObject.mode)
-        yield put(actionObject.controlType)
         yield put(actionObject.state)
     }
 }

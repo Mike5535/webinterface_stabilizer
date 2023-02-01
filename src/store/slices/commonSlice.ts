@@ -3,28 +3,26 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 
 export interface ICommonState {
   mode: string,
-  controlType: string,
+  isActive: boolean, 
 }
 
 const commonSlice = createSlice({
   name: 'common',
-  initialState: { mode: '', controlType: '' },
+  initialState: { mode: '', isActive: false },
   reducers: {
     switchModeSuccess: (state, action: PayloadAction<string>) => {
       state.mode = action.payload;
     },
-    switchWsControl: (state, action: PayloadAction<string>) => {
-      state.controlType = action.payload;
+    startSuccess: (state) => {
+
+      state.isActive = true;
+      console.log('active',state.isActive)
     },
-    switchControlTypeSuccess: (state, action: PayloadAction<string>) => {
-      if (state.controlType === action.payload) {
-        state.controlType = '';
-      } else {
-        state.controlType = action.payload;
-      }
-    }
+    stopSuccess: (state) => {
+      state.isActive = false;
+    },
   }
 });
 
-export const { switchModeSuccess, switchControlTypeSuccess } = commonSlice.actions;
+export const { switchModeSuccess, startSuccess, stopSuccess } = commonSlice.actions;
 export default commonSlice.reducer;

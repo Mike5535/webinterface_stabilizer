@@ -35,7 +35,10 @@ module.exports = {
             devServer.app.post("/api/switch/mode", function (req, res) {
                 res.json();
             });
-            devServer.app.post("/api/switch/control-type", function (req, res) {
+            devServer.app.post("/api/switch/start", function (req, res) {
+                res.json();
+            });
+            devServer.app.post("/api/switch/stop", function (req, res) {
                 res.json();
             });
             devServer.app.post("/api/pwm/set-frequency", function (req, res) {

@@ -2,11 +2,11 @@ import { IState } from '@/store/store';
 import React from 'react';
 import { useSelector } from 'react-redux'
 import { MonitoringInfo } from '../MonitoringInfo/monitoringInfo';
-import { TypeButton } from '../TypeButton/typeButton';
+import { StartButton } from '../StartButton/startButton';
 
 export const Monitoring = (props = null) => {
-    const controlType = useSelector((state: IState) => state.common.controlType);
     const mode = useSelector((state: IState) => state.common.mode);
+    const isActive = useSelector((state: IState) => state.common.isActive);
 
     return (
         <div className="monitoring__background">
@@ -19,10 +19,8 @@ export const Monitoring = (props = null) => {
             < MonitoringInfo />
             <div className='monitoring__control-type'>Режим управления</div>
             <div className='monitoring__buttons'>
-                < TypeButton tittle='Авто' isActive={controlType === 'auto' ? true : false} />
-                {mode === 'hysteresis' ? '' :
-                    < TypeButton tittle='Ручной' isActive={controlType === 'manual' ? true : false} />
-                }
+                < StartButton tittle='Стоп' />
+                < StartButton tittle='Старт' isActive={ isActive? 'pressed' : 'no pressed' } />
             </div>
         </div>
     );

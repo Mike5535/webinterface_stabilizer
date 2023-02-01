@@ -7,9 +7,8 @@ import { actionSwitchMode } from '@/store/actions/commonActions';
 export const PfmSettings = () => {
     const dispatch = useDispatch();
     const mode = useSelector((state: IState) => state.common.mode)
-    const controlType = useSelector((state: IState) => state.common.controlType);
 
-    if (!controlType && !mode) {
+    if (!mode) {
         dispatch(actionSwitchMode('/PFM'));
     }
 
@@ -107,30 +106,25 @@ export const PfmSettings = () => {
                 <line x1="724.5" y1="292" x2="724.5" y2="242" stroke="black" />
             </svg>
             <div className='main__settings'>
-                {controlType ?
-                    <>
-                        <div className='main__settings__row'>
-                            Введите длительность импульсов:
-                            <form>
-                                <input className='main__settings__input' type="text" maxLength={9} />
-                            </form>
-                            мкс
-                        </div>
-                        {controlType === 'manual' ?
-                            '' :
-                            <>
-                                <div className='main__settings__row'>
-                                    Введите выходное напряжение:
-                                    <form>
-                                        <input className='main__settings__input' type="text" maxLength={9} />
-                                    </form>
-                                    В
-                                </div>
-                            </>
-                        }
-                    </> :
-                    <div className='monitoring__off-header'>Выберите режим управления</div>
-                }
+
+                <div className='main__settings__first-row'>
+                    Введите длительность импульсов:
+                    <form>
+                        <input className='main__settings__input' type="text" maxLength={9} />
+                    </form>
+                    мкс
+                </div>
+
+                <div className='main__settings__row'>
+                    Введите выходное напряжение:
+                    <form>
+                        <input className='main__settings__input' type="text" maxLength={9} />
+                    </form>
+                    В
+                </div>
+
+                <div className='monitoring__off-header'>Выберите режим управления</div>
+
             </div>
             <div className='back-button__wrapper'>
                 <BackButton />
