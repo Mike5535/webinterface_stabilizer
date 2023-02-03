@@ -12,39 +12,32 @@
     transition: 0.12s;
 }
 
-@mixin button-size_hover {
-    font-size: 19px;
-    padding-top: 1px;
-    min-height: 34px;
-    transition: 0.12s;
-}
-
 .type-button__start {
     @include button-size;
-    background-color: rgba(0, 117, 255, 0.2);
+    background-color: rgba(0, 117, 255, 0.3);
 
     &:hover {
-        background-color: rgba(0, 117, 255, 0.3);
-        @include button-size_hover;
+        background-color: rgba(0, 117, 255, 0.4);
+        transition: 0.12s;
     }
 }
 
 .type-button__start_active {
     @include button-size;
-    background-color: rgba(0, 117, 255, 0.85);
+    background-color: rgba(0, 117, 255, 0.6);
 
     &:hover {
-        background-color: rgba(0, 117, 255, 1);
-        @include button-size_hover;
+        background-color: rgba(0, 117, 255, 0.7);
+        transition: 0.12s;
     }
 }
 
 .type-button__stop {
     @include button-size;
-    background-color: rgba(255, 113, 113, 0.85);
+    background-color: rgba(255, 0, 245, 0.17);
 
     &:hover {
-        background-color: rgba(255, 113, 113, 1);
-        @include button-size_hover;
+        background-color: rgba(255, 0, 245, 0.27);
+        transition: 0.12s;
     }
 }

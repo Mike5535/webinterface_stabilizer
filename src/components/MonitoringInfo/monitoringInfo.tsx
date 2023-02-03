@@ -3,23 +3,8 @@ import React from 'react';
 import { useSelector } from 'react-redux'
 
 export const MonitoringInfo = (props = null) => {
-    const mode = useSelector((state: IState) => state.common.mode)
-
-    if (mode) {
-        return (
-            <div className="monitoring__off-header">
-                Выберите режим управления
-            </div>
-        );
-    }
-
-    if (!mode) {
-        return (
-            <div className="monitoring__off-header">
-                Выберите метод управления
-            </div>
-        );
-    }
+    const mode = useSelector((state: IState) => state.common.mode);
+    const isActive = useSelector((state: IState) => state.common.isActive);
 
     if (mode === 'PWM') {
         return (
@@ -30,6 +15,14 @@ export const MonitoringInfo = (props = null) => {
                     </div>
                     <div className="monitoring__row__field">
                         ШИМ
+                    </div>
+                </div>
+                <div className="monitoring__row">
+                    <div className="monitoring__row__header">
+                        Текущий статус:
+                    </div>
+                    <div className="monitoring__row__field">
+                        {isActive?'работает':'выключен'}
                     </div>
                 </div>
                 <div className="monitoring__row">
@@ -83,6 +76,14 @@ export const MonitoringInfo = (props = null) => {
                 </div>
                 <div className="monitoring__row">
                     <div className="monitoring__row__header">
+                        Текущий статус:
+                    </div>
+                    <div className="monitoring__row__field">
+                        {isActive?'работает':'выключен'}
+                    </div>
+                </div>
+                <div className="monitoring__row">
+                    <div className="monitoring__row__header">
                         Частота:
                     </div>
                     <div className="monitoring__row__field">
@@ -122,6 +123,14 @@ export const MonitoringInfo = (props = null) => {
                 </div>
                 <div className="monitoring__row">
                     <div className="monitoring__row__header">
+                        Текущий статус:
+                    </div>
+                    <div className="monitoring__row__field">
+                        {isActive?'работает':'выключен'}
+                    </div>
+                </div>
+                <div className="monitoring__row">
+                    <div className="monitoring__row__header">
                         Верхний порог:
                     </div>
                     <div className="monitoring__row__field">
@@ -150,7 +159,7 @@ export const MonitoringInfo = (props = null) => {
 
     return (
         <div className="monitoring__off-header">
-            Выберите режим и метод управления
+            Выберите метод управления
         </div>
     );
 }

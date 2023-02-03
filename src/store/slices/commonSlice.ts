@@ -14,9 +14,7 @@ const commonSlice = createSlice({
       state.mode = action.payload;
     },
     startSuccess: (state) => {
-
       state.isActive = true;
-      console.log('active',state.isActive)
     },
     stopSuccess: (state) => {
       state.isActive = false;

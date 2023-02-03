@@ -123,8 +123,6 @@ export const PfmSettings = () => {
                     В
                 </div>
 
-                <div className='monitoring__off-header'>Выберите режим управления</div>
-
             </div>
             <div className='back-button__wrapper'>
                 <BackButton />

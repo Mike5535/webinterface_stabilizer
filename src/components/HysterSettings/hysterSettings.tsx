@@ -99,32 +99,29 @@ export const HysterSettings = () => {
                 <line x1="602.5" y1="292" x2="602.5" y2="242" stroke="black" />
             </svg>
             <div className='main__settings'>
-                {'' ?
-                    <>
-                        <div className='main__settings__first-row'>
-                            Введите верхний порог напряжения:
-                            <form>
-                                <input className='main__settings__input' type="text" maxLength={9} />
-                            </form>
-                            В
-                        </div>
-                        <div className='main__settings__row'>
-                            Введите нижний порог напряжения:
-                            <form>
-                                <input className='main__settings__input' type="text" maxLength={9} />
-                            </form>
-                            В
-                        </div>
-                        <div className='main__settings__row'>
-                            Введите выходное напряжение:
-                            <form>
-                                <input className='main__settings__input' type="text" maxLength={9} />
-                            </form>
-                            В
-                        </div>
-                    </> :
-                    <div className='monitoring__off-header'>Выберите режим управления</div>
-                }
+                <>
+                    <div className='main__settings__first-row'>
+                        Введите верхний порог напряжения:
+                        <form>
+                            <input className='main__settings__input' type="text" maxLength={9} />
+                        </form>
+                        В
+                    </div>
+                    <div className='main__settings__row'>
+                        Введите нижний порог напряжения:
+                        <form>
+                            <input className='main__settings__input' type="text" maxLength={9} />
+                        </form>
+                        В
+                    </div>
+                    <div className='main__settings__row'>
+                        Введите выходное напряжение:
+                        <form>
+                            <input className='main__settings__input' type="text" maxLength={9} />
+                        </form>
+                        В
+                    </div>
+                </>
             </div>
             <div className='back-button__wrapper'>
                 <BackButton />

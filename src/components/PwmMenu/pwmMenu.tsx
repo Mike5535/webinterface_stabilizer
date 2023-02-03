@@ -23,7 +23,6 @@ export const PwmMenu = () => {
                 lawReg = 'ПИД';
                 break;
         }
-        console.log('lawReg',lawReg)
         dispatch(actionSetLawReg({ law_reg: lawReg}));
     }
 

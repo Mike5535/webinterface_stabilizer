@@ -27,4 +27,13 @@ export function* requestStop() {
 export function* watchStop() {
   yield takeEvery('STOP', requestStop);
 }
+
+export function* requestSetVoltage(action) {
+  yield call(Ajax.post, { url: '/api/set-voltage', body: action.payload });
+  yield put({type: 'common/setVoltage', payload: action.payload})
+}
+
+export function* watchSetVoltage() {
+  yield takeEvery('SET_VOLTAGE', requestSetVoltage);
+}
  
