@@ -17,7 +17,6 @@ export const Monitoring = (props = null) => {
                 <div className="monitoring__header">Мониторинг</div>
             </div>
             < MonitoringInfo />
-            <div className='monitoring__control-type'>Режим управления</div>
             <div className='monitoring__buttons'>
                 < StartButton tittle='Стоп' />
                 < StartButton tittle='Старт' isActive={ isActive? 'pressed' : 'no pressed' } />

@@ -7,6 +7,7 @@ import {
 } from '@sagas/commonSagas'
 import { watchPostLawReg, watchPostPwmFreq } from "@sagas/pwmSagas";
 import watchWS from "@sagas/wsSaga";
+import { watchpostPulseDur } from "@sagas/pfmSagas";
 
 export function* rootWatcher() {
     yield all([
@@ -16,6 +17,7 @@ export function* rootWatcher() {
         call(watchSetVoltage),
         call(watchPostPwmFreq),
         call(watchPostLawReg),
+        call(watchpostPulseDur),
         call(watchWS),
     ]);
 }
