@@ -5,8 +5,14 @@ import { useSelector } from 'react-redux'
 export const MonitoringInfo = (props = null) => {
     const mode = useSelector((state: IState) => state.common.mode);
     const isActive = useSelector((state: IState) => state.common.isActive);
+    const voltage = useSelector((state: IState) => state.common.voltage);
+
+    const pwmFreq = useSelector((state: IState) => state.pwm.pwmFreq);
+    const lawReg = useSelector((state: IState) => state.pwm.lawReg);
+    const duty = useSelector((state: IState) => state.pwm.duty);
 
     if (mode === 'PWM') {
+
         return (
             <>
                 <div className="monitoring__row">
@@ -22,7 +28,7 @@ export const MonitoringInfo = (props = null) => {
                         Текущий статус:
                     </div>
                     <div className="monitoring__row__field">
-                        {isActive?'работает':'выключен'}
+                        {isActive ? 'работает' : 'выключен'}
                     </div>
                 </div>
                 <div className="monitoring__row">
@@ -30,7 +36,7 @@ export const MonitoringInfo = (props = null) => {
                         Частота:
                     </div>
                     <div className="monitoring__row__field">
-                        100 кГц
+                        {`${pwmFreq} кГц`}
                     </div>
                 </div>
                 <div className="monitoring__row">
@@ -38,7 +44,7 @@ export const MonitoringInfo = (props = null) => {
                         Коэф. заполнения:
                     </div>
                     <div className="monitoring__row__field">
-                        0 %
+                        {`${duty} %`}
                     </div>
                 </div>
 
@@ -47,7 +53,7 @@ export const MonitoringInfo = (props = null) => {
                         Закон регулирования:
                     </div>
                     <div className="monitoring__row__field">
-                        П
+                        {lawReg}
                     </div>
                 </div>
 
@@ -56,7 +62,7 @@ export const MonitoringInfo = (props = null) => {
                         Выходное напряжение:
                     </div>
                     <div className="monitoring__row__field">
-                        5 В
+                        {`${voltage} В`}
                     </div>
                 </div>
             </>
@@ -79,7 +85,7 @@ export const MonitoringInfo = (props = null) => {
                         Текущий статус:
                     </div>
                     <div className="monitoring__row__field">
-                        {isActive?'работает':'выключен'}
+                        {isActive ? 'работает' : 'выключен'}
                     </div>
                 </div>
                 <div className="monitoring__row">
@@ -126,7 +132,7 @@ export const MonitoringInfo = (props = null) => {
                         Текущий статус:
                     </div>
                     <div className="monitoring__row__field">
-                        {isActive?'работает':'выключен'}
+                        {isActive ? 'работает' : 'выключен'}
                     </div>
                 </div>
                 <div className="monitoring__row">

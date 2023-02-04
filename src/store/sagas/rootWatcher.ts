@@ -3,6 +3,7 @@ import {
     watchMode,
     watchStart,
     watchStop,
+    watchSetVoltage,
 } from '@sagas/commonSagas'
 import { watchPostLawReg, watchPostPwmFreq } from "@sagas/pwmSagas";
 import watchWS from "@sagas/wsSaga";
@@ -12,6 +13,7 @@ export function* rootWatcher() {
         call(watchMode),
         call(watchStart),
         call(watchStop),
+        call(watchSetVoltage),
         call(watchPostPwmFreq),
         call(watchPostLawReg),
         call(watchWS),

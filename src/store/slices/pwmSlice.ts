@@ -5,19 +5,17 @@ export interface IPwmState {
   pwmFreq: string,
   lawReg: string,
   duty: string,
-  outputVoltage: string,
 }
 
 export interface IPwmStateFromServer {
   pwm_freq: string,
   law_reg: string,
   duty: string,
-  output_voltage: string,
 }
 
 const pwmSlice = createSlice({
   name: 'pwm',
-  initialState: { pwmFreq: '', lawReg: '', duty: '', outputVoltage: '' },
+  initialState: { pwmFreq: '100', lawReg: 'П', duty: '0' },
   reducers: {
     setPwmFreqSuccess: (state, action: PayloadAction<{ pwm_freq: string }>) => {
       state.pwmFreq = action.payload.pwm_freq;
@@ -31,7 +29,6 @@ const pwmSlice = createSlice({
       state.pwmFreq = action.payload.pwm_freq;
       state.lawReg = action.payload.law_reg;
       state.duty = action.payload.duty;
-      state.outputVoltage = action.payload.output_voltage;
     },
   }
 });
