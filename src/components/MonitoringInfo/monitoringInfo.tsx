@@ -11,6 +11,9 @@ export const MonitoringInfo = (props = null) => {
     const lawReg = useSelector((state: IState) => state.pwm.lawReg);
     const duty = useSelector((state: IState) => state.pwm.duty);
 
+    const pfmFreq = useSelector((state: IState) => state.pfm.pfmFreq);
+    const pulseDur = useSelector((state: IState) => state.pfm.pulseDur);
+
     if (mode === 'PWM') {
 
         return (
@@ -93,7 +96,7 @@ export const MonitoringInfo = (props = null) => {
                         Частота:
                     </div>
                     <div className="monitoring__row__field">
-                        100 кГц
+                    {`${pfmFreq} кГц`}
                     </div>
                 </div>
                 <div className="monitoring__row">
@@ -101,7 +104,7 @@ export const MonitoringInfo = (props = null) => {
                         Длительность имп.:
                     </div>
                     <div className="monitoring__row__field">
-                        5 мкс
+                    {`${pulseDur} мкс`}
                     </div>
                 </div>
                 <div className="monitoring__row">

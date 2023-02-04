@@ -5,7 +5,6 @@ import { MonitoringInfo } from '../MonitoringInfo/monitoringInfo';
 import { StartButton } from '../StartButton/startButton';
 
 export const Monitoring = (props = null) => {
-    const mode = useSelector((state: IState) => state.common.mode);
     const isActive = useSelector((state: IState) => state.common.isActive);
 
     return (

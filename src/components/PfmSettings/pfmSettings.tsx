@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { IState } from '@/store/store';
 import { BackButton } from '@components/BackButton/backButton';
 import { actionSetVoltage, actionSwitchMode } from '@store/actions/commonActions';
+import { actionSetPulseDur } from '@store/actions/pfmActions';
 
 export const PfmSettings = () => {
     const dispatch = useDispatch();
@@ -10,6 +11,13 @@ export const PfmSettings = () => {
 
     if (!mode) {
         dispatch(actionSwitchMode('/PFM'));
+    }
+
+    const handlerPulseDur = (e: React.FormEvent) => {
+        e.preventDefault();
+        const input = (e.target as HTMLElement).querySelector('input');
+        const body = { pulse_duration: input.value };
+        dispatch(actionSetPulseDur(body));
     }
 
     const handlerVoltage = (e: React.FormEvent) => {
@@ -116,7 +124,7 @@ export const PfmSettings = () => {
 
                 <div className='main__settings__first-row'>
                     Введите длительность импульсов:
-                    <form>
+                    <form onSubmit={handlerPulseDur}>
                         <input className='main__settings__input' type="text" maxLength={9} />
                     </form>
                     мкс

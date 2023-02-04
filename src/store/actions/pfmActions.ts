@@ -1,3 +1,3 @@
 import { createAction } from '@reduxjs/toolkit'
 
-export const actionSetPulseDur = createAction<{pfm_freq: string}>('SET_PULSE_DURATION');
+export const actionSetPulseDur = createAction<{pulse_duration: string}>('SET_PULSE_DURATION');
