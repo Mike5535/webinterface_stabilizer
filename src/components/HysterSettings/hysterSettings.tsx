@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { IState } from '@/store/store';
 import { BackButton } from '@components/BackButton/backButton';
-import { actionSwitchMode } from '@/store/actions/commonActions';
+import { actionSetVoltage, actionSwitchMode } from '@store/actions/commonActions';
 
 export const HysterSettings = () => {
     const dispatch = useDispatch();
@@ -10,6 +10,13 @@ export const HysterSettings = () => {
 
     if (!mode) {
         dispatch(actionSwitchMode('/hysteresis'));
+    }
+
+    const handlerVoltage = (e: React.FormEvent) => {
+        e.preventDefault();
+        const input = (e.target as HTMLElement).querySelector('input');
+        const body = { voltage: input.value };
+        dispatch(actionSetVoltage(body));
     }
 
     return (
@@ -101,14 +108,7 @@ export const HysterSettings = () => {
             <div className='main__settings'>
                 <>
                     <div className='main__settings__first-row'>
-                        Введите верхний порог напряжения:
-                        <form>
-                            <input className='main__settings__input' type="text" maxLength={9} />
-                        </form>
-                        В
-                    </div>
-                    <div className='main__settings__row'>
-                        Введите нижний порог напряжения:
+                        Введите окно гистерезиса:
                         <form>
                             <input className='main__settings__input' type="text" maxLength={9} />
                         </form>
@@ -116,7 +116,7 @@ export const HysterSettings = () => {
                     </div>
                     <div className='main__settings__row'>
                         Введите выходное напряжение:
-                        <form>
+                        <form onSubmit={handlerVoltage}>
                             <input className='main__settings__input' type="text" maxLength={9} />
                         </form>
                         В

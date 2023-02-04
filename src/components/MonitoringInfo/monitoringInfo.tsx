@@ -109,7 +109,7 @@ export const MonitoringInfo = (props = null) => {
                         Выходное напряжение:
                     </div>
                     <div className="monitoring__row__field">
-                        5 В
+                        {`${voltage} В`}
                     </div>
                 </div>
             </>
@@ -137,18 +137,10 @@ export const MonitoringInfo = (props = null) => {
                 </div>
                 <div className="monitoring__row">
                     <div className="monitoring__row__header">
-                        Верхний порог:
+                        Окно гистерезиса:
                     </div>
                     <div className="monitoring__row__field">
-                        5,01 В
-                    </div>
-                </div>
-                <div className="monitoring__row">
-                    <div className="monitoring__row__header">
-                        Нижний порог:
-                    </div>
-                    <div className="monitoring__row__field">
-                        4,99 В
+                        0,01 В
                     </div>
                 </div>
                 <div className="monitoring__row">
@@ -156,7 +148,7 @@ export const MonitoringInfo = (props = null) => {
                         Выходное напряжение:
                     </div>
                     <div className="monitoring__row__field">
-                        5 В
+                        {`${voltage} В`}
                     </div>
                 </div>
             </>

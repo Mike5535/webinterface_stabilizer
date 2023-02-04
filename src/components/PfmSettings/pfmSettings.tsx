@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { IState } from '@/store/store';
 import { BackButton } from '@components/BackButton/backButton';
-import { actionSwitchMode } from '@/store/actions/commonActions';
+import { actionSetVoltage, actionSwitchMode } from '@store/actions/commonActions';
 
 export const PfmSettings = () => {
     const dispatch = useDispatch();
@@ -10,6 +10,13 @@ export const PfmSettings = () => {
 
     if (!mode) {
         dispatch(actionSwitchMode('/PFM'));
+    }
+
+    const handlerVoltage = (e: React.FormEvent) => {
+        e.preventDefault();
+        const input = (e.target as HTMLElement).querySelector('input');
+        const body = { voltage: input.value };
+        dispatch(actionSetVoltage(body));
     }
 
     return (
@@ -117,7 +124,7 @@ export const PfmSettings = () => {
 
                 <div className='main__settings__row'>
                     Введите выходное напряжение:
-                    <form>
+                    <form onSubmit={handlerVoltage}>
                         <input className='main__settings__input' type="text" maxLength={9} />
                     </form>
                     В
