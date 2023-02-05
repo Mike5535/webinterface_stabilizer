@@ -103,7 +103,7 @@ export const MonitoringInfo = (props = null) => {
                 </div>
                 <div className="monitoring__row">
                     <div className="monitoring__row__header">
-                        Длительность имп.:
+                        Длительность импульса:
                     </div>
                     <div className="monitoring__row__field">
                     {`${pulseDur} мкс`}
