@@ -32,7 +32,8 @@ function initWebsocket() {
                                     pwm_freq: msg.pwm_freq,
                                     law_reg: msg.law_reg,
                                 }
-                            }
+                            },
+                            voltage: { type: 'common/setVoltage', payload: { voltage: msg.voltage } },
                         });
                     case 'PFM':
                         return emitter({
@@ -42,7 +43,8 @@ function initWebsocket() {
                                     pulse_duration: msg.pulse_duration,
                                     pfm_freq: msg.pfm_freq,
                                 }
-                            }
+                            },
+                            voltage: { type: 'common/setVoltage', payload: { voltage: msg.voltage } },
                         });
                     case 'hysteresis':
                         return emitter({
@@ -51,7 +53,8 @@ function initWebsocket() {
                                 type: 'pwm/setHysterWindowSuccess', payload: {
                                     hyster_window: msg.hyster_window,
                                 }
-                            }
+                            },
+                            voltage: { type: 'common/setVoltage', payload: { voltage: msg.voltage } },
                         });
                     default:
                     // nothing to do
@@ -71,5 +74,6 @@ export default function* watchWS() {
         const actionObject = yield take(channel)
         yield put(actionObject.mode)
         yield put(actionObject.state)
+        yield put(actionObject.voltage)
     }
 }
