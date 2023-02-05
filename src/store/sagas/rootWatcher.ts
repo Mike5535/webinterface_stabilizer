@@ -8,6 +8,7 @@ import {
 import { watchPostLawReg, watchPostPwmFreq } from "@sagas/pwmSagas";
 import watchWS from "@sagas/wsSaga";
 import { watchpostPulseDur } from "@sagas/pfmSagas";
+import { watchPostHysterWindow } from "@sagas/hysterSgagas";
 
 export function* rootWatcher() {
     yield all([
@@ -18,6 +19,7 @@ export function* rootWatcher() {
         call(watchPostPwmFreq),
         call(watchPostLawReg),
         call(watchpostPulseDur),
+        call(watchPostHysterWindow),
         call(watchWS),
     ]);
 }

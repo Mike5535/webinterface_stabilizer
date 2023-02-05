@@ -14,6 +14,8 @@ export const MonitoringInfo = (props = null) => {
     const pfmFreq = useSelector((state: IState) => state.pfm.pfmFreq);
     const pulseDur = useSelector((state: IState) => state.pfm.pulseDur);
 
+    const hysterWindow = useSelector((state: IState) => state.hyster.hysterWindow);
+
     if (mode === 'PWM') {
 
         return (
@@ -143,7 +145,7 @@ export const MonitoringInfo = (props = null) => {
                         Окно гистерезиса:
                     </div>
                     <div className="monitoring__row__field">
-                        0,01 В
+                    {`${hysterWindow} В`}
                     </div>
                 </div>
                 <div className="monitoring__row">

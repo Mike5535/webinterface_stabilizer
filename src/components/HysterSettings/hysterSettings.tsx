@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { IState } from '@/store/store';
 import { BackButton } from '@components/BackButton/backButton';
 import { actionSetVoltage, actionSwitchMode } from '@store/actions/commonActions';
+import { actionSetHysterWindow } from '@store/actions/hysterActions';
 
 export const HysterSettings = () => {
     const dispatch = useDispatch();
@@ -10,6 +11,13 @@ export const HysterSettings = () => {
 
     if (!mode) {
         dispatch(actionSwitchMode('/hysteresis'));
+    }
+
+    const handlerHysterWindow = (e: React.FormEvent) => {
+        e.preventDefault();
+        const input = (e.target as HTMLElement).querySelector('input');
+        const body = { hyster_window: input.value };
+        dispatch(actionSetHysterWindow(body));
     }
 
     const handlerVoltage = (e: React.FormEvent) => {
@@ -109,7 +117,7 @@ export const HysterSettings = () => {
                 <>
                     <div className='main__settings__first-row'>
                         Введите окно гистерезиса:
-                        <form>
+                        <form onSubmit={handlerHysterWindow}>
                             <input className='main__settings__input' type="text" maxLength={9} />
                         </form>
                         В

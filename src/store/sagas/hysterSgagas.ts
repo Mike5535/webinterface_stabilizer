@@ -3,7 +3,7 @@ import { Ajax } from '@utils/ajax'
 
 export function* postHysterWindow(action) {
   yield call(Ajax.post, { url: '/api/hyster/set-hyster-window', body: action.payload});
-  yield put({type: 'hyster/setHysterWindow', payload: action.payload})
+  yield put({type: 'hyster/setHysterWindowSuccess', payload: action.payload})
 }
 
 export function* watchPostHysterWindow() {
