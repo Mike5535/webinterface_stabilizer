@@ -22,16 +22,37 @@ function initWebsocket() {
                 console.error(`Error parsing : ${e.data}`)
             }
             if (msg) {
-                const { payload: currentState } = msg
-                const channel = msg.channel
-                switch (channel) {
-                    case 'GET_STATE_PWM_AUTO':
+                switch (msg.mode) {
+                    case 'PWM':
                         return {
-                            mode: emitter({ type: 'common/switchModeSuccess', payload: currentState.mode }),
-                            state: emitter({ type: 'pwm/setPwmStateAuto', payload: currentState.state })
+                            mode: emitter({ type: 'common/switchModeSuccess', payload: msg.mode }),
+                            state: emitter({
+                                type: 'pwm/setPwmStateAuto', payload: {
+                                    duty: msg.duty,
+                                    pwm_freq: msg.pwm_freq,
+                                    law_reg: msg.law_reg,
+                                }
+                            })
                         }
-                    case 'GET_STATE_PWM_MANUAL':
-                        return emitter({ type: 'pwm/setPwmStateManual', currentState })
+                    case 'PFM':
+                        return {
+                            mode: emitter({ type: 'common/switchModeSuccess', payload: msg.mode }),
+                            state: emitter({
+                                type: 'pwm/setPfmStateAuto', payload: {
+                                    pulse_duration: msg.pulse_duration,
+                                    pfmFreq: msg.pfmFreq,
+                                }
+                            })
+                        }
+                    case 'hysteresis':
+                        return {
+                            mode: emitter({ type: 'common/switchModeSuccess', payload: msg.mode }),
+                            state: emitter({
+                                type: 'pwm/setHysterWindowSuccess', payload: {
+                                    hyster_window: msg.hyster_window,
+                                }
+                            })
+                        }
                     default:
                     // nothing to do
                 }
