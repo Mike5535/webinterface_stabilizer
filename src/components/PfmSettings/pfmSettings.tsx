@@ -30,7 +30,7 @@ export const PfmSettings = () => {
     return (
         <>
             <div className="pwm__header">
-                Настройки ЧИМ
+                Настройки
             </div>
             <svg width="924" height="404" viewBox="0 0 924 404" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <line x1="21" y1="66.5" x2="71" y2="66.5" stroke="black" />

@@ -31,7 +31,7 @@ export const PwmSettings = () => {
     return (
         <>
             <div className="pwm__header">
-                Настройки ШИМ
+                Настройки
             </div>
             <svg className='pwm__shema' width="963" height="349" viewBox="0 0 963 349" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <line x1="856" y1="179" x2="856" y2="158" stroke="black" />
