@@ -24,35 +24,35 @@ function initWebsocket() {
             if (msg) {
                 switch (msg.mode) {
                     case 'PWM':
-                        return {
-                            mode: emitter({ type: 'common/switchModeSuccess', payload: msg.mode }),
-                            state: emitter({
+                        return emitter({
+                            mode: { type: 'common/switchModeSuccess', payload: msg.mode },
+                            state: {
                                 type: 'pwm/setPwmStateAuto', payload: {
                                     duty: msg.duty,
                                     pwm_freq: msg.pwm_freq,
                                     law_reg: msg.law_reg,
                                 }
-                            })
-                        }
+                            }
+                        });
                     case 'PFM':
-                        return {
-                            mode: emitter({ type: 'common/switchModeSuccess', payload: msg.mode }),
-                            state: emitter({
+                        return emitter({
+                            mode: { type: 'common/switchModeSuccess', payload: msg.mode },
+                            state: {
                                 type: 'pwm/setPfmStateAuto', payload: {
                                     pulse_duration: msg.pulse_duration,
-                                    pfmFreq: msg.pfmFreq,
+                                    pfm_freq: msg.pfm_freq,
                                 }
-                            })
-                        }
+                            }
+                        });
                     case 'hysteresis':
-                        return {
-                            mode: emitter({ type: 'common/switchModeSuccess', payload: msg.mode }),
-                            state: emitter({
+                        return emitter({
+                            mode: { type: 'common/switchModeSuccess', payload: msg.mode },
+                            state: {
                                 type: 'pwm/setHysterWindowSuccess', payload: {
                                     hyster_window: msg.hyster_window,
                                 }
-                            })
-                        }
+                            }
+                        });
                     default:
                     // nothing to do
                 }
