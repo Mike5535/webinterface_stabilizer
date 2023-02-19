@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { IState } from '@/store/store';
 import { BackButton } from '@components/BackButton/backButton';
@@ -7,24 +7,70 @@ import { actionSetPulseDur } from '@store/actions/pfmActions';
 
 export const PfmSettings = () => {
     const dispatch = useDispatch();
-    const mode = useSelector((state: IState) => state.common.mode)
+    const mode = useSelector((state: IState) => state.common.mode);
+    const [isVoltageRight, setVoltageRight] = useState(true);
+    const [isPulseDurRight, setPulseDurRight] = useState(true);
 
     if (!mode) {
         dispatch(actionSwitchMode('/PFM'));
     }
 
+    const validatePulseDur = (e: React.FormEvent) => {
+        let pulse_duration;
+        let isSubmit = false;
+        if (e.target instanceof HTMLInputElement) {
+            pulse_duration = (e.target as HTMLInputElement).value;
+        } else {
+            pulse_duration = (e.target as HTMLElement).querySelector('input').value;
+            isSubmit = true;
+        }
+        if (pulse_duration.match(/^\d+$/) && pulse_duration >= 1 && pulse_duration < 50) {
+            setPulseDurRight(true);
+            if(isSubmit) {
+                (e.target as HTMLElement).querySelector('input').value = '';
+            }
+            return { pulse_duration };
+        }
+
+        pulse_duration ? setPulseDurRight(false) : setPulseDurRight(true);
+        return null;
+    }
+
     const handlerPulseDur = (e: React.FormEvent) => {
         e.preventDefault();
-        const input = (e.target as HTMLElement).querySelector('input');
-        const body = { pulse_duration: input.value };
-        dispatch(actionSetPulseDur(body));
+        const body = validatePulseDur(e);
+        if (body) {
+            dispatch(actionSetPulseDur(body));
+        }
+    }
+
+    const validateVoltage = (e: React.FormEvent) => {
+        let voltage;
+        let isSubmit = false;
+        if (e.target instanceof HTMLInputElement) {
+            voltage = (e.target as HTMLInputElement).value;
+        } else {
+            voltage = (e.target as HTMLElement).querySelector('input').value;
+            isSubmit = false;
+        }
+        if (voltage.match(/^\d+$/) && voltage >= 5 && voltage <= 20) {
+            setVoltageRight(true);
+            if(isSubmit) {
+                (e.target as HTMLElement).querySelector('input').value = '';
+            }
+            return { voltage };
+        }
+
+        voltage ? setVoltageRight(false) : setVoltageRight(true);
+        return null;
     }
 
     const handlerVoltage = (e: React.FormEvent) => {
         e.preventDefault();
-        const input = (e.target as HTMLElement).querySelector('input');
-        const body = { voltage: input.value };
-        dispatch(actionSetVoltage(body));
+        const body = validateVoltage(e);
+        if (body) {
+            dispatch(actionSetVoltage(body));
+        }
     }
 
     return (
@@ -127,16 +173,16 @@ export const PfmSettings = () => {
 
                 <div className='main__settings__first-row'>
                     Введите длительность импульсов:
-                    <form onSubmit={handlerPulseDur}>
-                        <input className='main__settings__input' type="text" maxLength={9} />
+                    <form onKeyUp={validatePulseDur} onSubmit={handlerPulseDur}>
+                        <input className={isPulseDurRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={2} />
                     </form>
                     мкс
                 </div>
 
                 <div className='main__settings__row'>
                     Введите выходное напряжение:
-                    <form onSubmit={handlerVoltage}>
-                        <input className='main__settings__input' type="text" maxLength={9} />
+                    <form onKeyUp={validateVoltage} onSubmit={handlerVoltage}>
+                        <input className={isVoltageRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={2} />
                     </form>
                     В
                 </div>

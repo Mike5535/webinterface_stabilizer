@@ -1,3 +1,15 @@
+@mixin input {
+    width: 100px;
+    height: 35px;
+    border-radius: 4px;
+    background-color: rgba(229, 246, 255, 1);
+    font-size: 21px;
+    padding: 0 10px;
+    text-align: end;
+    margin: 0 15px 0 25px;
+    box-sizing: border-box;
+}
+
 .main {
     display: flex;
     flex-direction: column;
@@ -59,14 +71,13 @@
         }
 
         &__input {
-            width: 100px;
-            height: 35px;
-            border-radius: 4px;
-            background-color: rgba(229, 246, 255, 1);
+            @include input;
             border: 0px;
-            font-size: 21px;
-            padding-left: 10px;
-            margin: 0 15px 0 25px;
+
+            &_error {
+                @include input;
+                border: 2px solid red;
+            }
         }
     }
 }

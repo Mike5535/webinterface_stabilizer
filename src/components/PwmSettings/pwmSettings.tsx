@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { IState } from '@/store/store';
 import { BackButton } from '@components/BackButton/backButton';
@@ -8,24 +8,70 @@ import { actionSetVoltage, actionSwitchMode } from '@/store/actions/commonAction
 
 export const PwmSettings = () => {
     const dispatch = useDispatch();
-    const mode = useSelector((state: IState) => state.common.mode)
+    const mode = useSelector((state: IState) => state.common.mode);
+    const [isVoltageRight, setVoltageRight] = useState(true);
+    const [isFreqRight, setFreqRight] = useState(true);
 
     if (!mode) {
         dispatch(actionSwitchMode('/PWM'));
     }
 
+    const validateFreq = (e: React.FormEvent) => {
+        let pwm_freq;
+        let isSubmit = false;
+        if (e.target instanceof HTMLInputElement) {
+            pwm_freq = (e.target as HTMLInputElement).value;
+        } else {
+            pwm_freq = (e.target as HTMLElement).querySelector('input').value;
+            isSubmit = true;
+        }
+        if (pwm_freq.match(/^\d+$/) && pwm_freq >= 1 && pwm_freq <= 100_000) {
+            setFreqRight(true);
+            if(isSubmit) {
+                (e.target as HTMLElement).querySelector('input').value = '';
+            }
+            return { pwm_freq };
+        }
+
+        pwm_freq ? setFreqRight(false) : setFreqRight(true);
+        return null;
+    }
+
     const handlerFreq = (e: React.FormEvent) => {
         e.preventDefault();
-        const input = (e.target as HTMLElement).querySelector('input');
-        const body = { pwm_freq: input.value };
-        dispatch(actionSetPwmFreq(body));
+        const body = validateFreq(e);
+        if (body) {
+            dispatch(actionSetPwmFreq(body));
+        }
+    }
+
+    const validateVoltage = (e: React.FormEvent) => {
+        let voltage;
+        let isSubmit = false;
+        if (e.target instanceof HTMLInputElement) {
+            voltage = (e.target as HTMLInputElement).value;
+        } else {
+            voltage = (e.target as HTMLElement).querySelector('input').value;
+            isSubmit = true;
+        }
+        if (voltage.match(/^\d+$/) && voltage >= 5 && voltage <= 20) {
+            setVoltageRight(true);
+            if(isSubmit) {
+                (e.target as HTMLElement).querySelector('input').value = '';
+            }
+            return { voltage };
+        }
+
+        voltage ? setVoltageRight(false) : setVoltageRight(true);
+        return null;
     }
 
     const handlerVoltage = (e: React.FormEvent) => {
         e.preventDefault();
-        const input = (e.target as HTMLElement).querySelector('input');
-        const body = { voltage: input.value };
-        dispatch(actionSetVoltage(body));
+        const body = validateVoltage(e);
+        if (body) {
+            dispatch(actionSetVoltage(body));
+        }
     }
 
     return (
@@ -129,8 +175,8 @@ export const PwmSettings = () => {
             <div className='main__settings'>
                 <div className='main__settings__row'>
                     Введите частоту ШИМ:
-                    <form onSubmit={handlerFreq}>
-                        <input className='main__settings__input' type="text" maxLength={9} />
+                    <form onKeyUp={validateFreq} onSubmit={handlerFreq}>
+                        <input className={isFreqRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={6} />
                     </form>
                     кГц
                 </div>
@@ -141,8 +187,8 @@ export const PwmSettings = () => {
                 </div>
                 <div className='main__settings__row'>
                     Введите выходное напряжение:
-                    <form onSubmit={handlerVoltage}>
-                        <input className='main__settings__input' type="text" maxLength={9} />
+                    <form onKeyUp={validateVoltage} onSubmit={handlerVoltage}>
+                        <input className={isVoltageRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={2} />
                     </form>
                     В
                 </div>

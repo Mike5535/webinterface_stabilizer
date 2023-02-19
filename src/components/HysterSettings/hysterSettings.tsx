@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { IState } from '@/store/store';
 import { BackButton } from '@components/BackButton/backButton';
@@ -7,24 +7,73 @@ import { actionSetHysterWindow } from '@store/actions/hysterActions';
 
 export const HysterSettings = () => {
     const dispatch = useDispatch();
-    const mode = useSelector((state: IState) => state.common.mode)
+    const mode = useSelector((state: IState) => state.common.mode);
+    const [isVoltageRight, setVoltageRight] = useState(true);
+    const [isHysterWindowRight, setHysterWindowRight] = useState(true);
 
     if (!mode) {
         dispatch(actionSwitchMode('/hysteresis'));
     }
 
+    const validateHysterWindow = (e: React.FormEvent) => {
+        let hyster_window;
+        let isSubmit = false;
+        if (e.target instanceof HTMLInputElement) {
+            hyster_window = (e.target as HTMLInputElement).value;
+        } else {
+            hyster_window = (e.target as HTMLElement).querySelector('input').value;
+            isSubmit = false;
+        }
+        if(hyster_window.match(/^\d[,]\d+$/)) {
+            hyster_window = hyster_window.split(',').join('.');
+        }
+        if (hyster_window.match(/^\d[.,]\d*$/) && hyster_window > 0 && hyster_window < 1) {
+            setHysterWindowRight(true);
+            if (isSubmit) {
+                (e.target as HTMLElement).querySelector('input').value = '';
+            }
+            return { hyster_window };
+        }
+
+        hyster_window ? setHysterWindowRight(false) : setHysterWindowRight(true);
+        return null;
+    }
+
     const handlerHysterWindow = (e: React.FormEvent) => {
         e.preventDefault();
-        const input = (e.target as HTMLElement).querySelector('input');
-        const body = { hyster_window: input.value };
-        dispatch(actionSetHysterWindow(body));
+        const body = validateHysterWindow(e);
+        if (body) {
+            dispatch(actionSetHysterWindow(body));
+        }
+    }
+
+    const validateVoltage = (e: React.FormEvent) => {
+        let voltage;
+        let isSubmit = false;
+        if (e.target instanceof HTMLInputElement) {
+            voltage = (e.target as HTMLInputElement).value;
+        } else {
+            voltage = (e.target as HTMLElement).querySelector('input').value;
+            isSubmit = false;
+        }
+        if (voltage.match(/^\d+$/) && voltage >= 5 && voltage <= 20) {
+            setVoltageRight(true);
+            if (isSubmit) {
+                (e.target as HTMLElement).querySelector('input').value = '';
+            }
+            return { voltage };
+        }
+
+        voltage ? setVoltageRight(false) : setVoltageRight(true);
+        return null;
     }
 
     const handlerVoltage = (e: React.FormEvent) => {
         e.preventDefault();
-        const input = (e.target as HTMLElement).querySelector('input');
-        const body = { voltage: input.value };
-        dispatch(actionSetVoltage(body));
+        const body = validateVoltage(e);
+        if (body) {
+            dispatch(actionSetVoltage(body));
+        }
     }
 
     return (
@@ -117,15 +166,15 @@ export const HysterSettings = () => {
                 <>
                     <div className='main__settings__first-row'>
                         Введите окно гистерезиса:
-                        <form onSubmit={handlerHysterWindow}>
-                            <input className='main__settings__input' type="text" maxLength={9} />
+                        <form onKeyUp={validateHysterWindow} onSubmit={handlerHysterWindow}>
+                            <input className={isHysterWindowRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={5} />
                         </form>
                         В
                     </div>
                     <div className='main__settings__row'>
                         Введите выходное напряжение:
-                        <form onSubmit={handlerVoltage}>
-                            <input className='main__settings__input' type="text" maxLength={9} />
+                        <form onKeyUp={validateVoltage} onSubmit={handlerVoltage}>
+                            <input className={isVoltageRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={2} />
                         </form>
                         В
                     </div>
