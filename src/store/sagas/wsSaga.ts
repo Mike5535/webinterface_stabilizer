@@ -34,6 +34,7 @@ function initWebsocket() {
                                 }
                             },
                             voltage: { type: 'common/setVoltage', payload: { voltage: msg.voltage } },
+                            workStatus: { type: 'common/switchWorkStatusSuccess', payload: msg.is_work },
                         });
                     case 'PFM':
                         return emitter({
@@ -45,6 +46,7 @@ function initWebsocket() {
                                 }
                             },
                             voltage: { type: 'common/setVoltage', payload: { voltage: msg.voltage } },
+                            workStatus: { type: 'common/switchWorkStatusSuccess', payload: msg.is_work },
                         });
                     case 'hysteresis':
                         return emitter({
@@ -55,6 +57,7 @@ function initWebsocket() {
                                 }
                             },
                             voltage: { type: 'common/setVoltage', payload: { voltage: msg.voltage } },
+                            workStatus: { type: 'common/switchWorkStatusSuccess', payload: msg.is_work },
                         });
                     default:
                     // nothing to do
@@ -75,5 +78,6 @@ export default function* watchWS() {
         yield put(actionObject.mode)
         yield put(actionObject.state)
         yield put(actionObject.voltage)
+        yield put(actionObject.workStatus)
     }
 }

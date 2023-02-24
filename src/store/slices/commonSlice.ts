@@ -14,6 +14,9 @@ const commonSlice = createSlice({
     switchModeSuccess: (state, action: PayloadAction<string>) => {
       state.mode = action.payload;
     },
+    switchWorkStatusSuccess: (state, action: PayloadAction<boolean>) => {
+      state.isActive = action.payload;
+    },
     startSuccess: (state) => {
       state.isActive = true;
     },
