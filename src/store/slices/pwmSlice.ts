@@ -26,7 +26,7 @@ const pwmSlice = createSlice({
       console.log('state',state)
     },
     setPwmStateAuto: (state, action: PayloadAction<IPwmStateFromServer>) => {
-      state.pwmFreq = action.payload.pwm_freq;
+      state.pwmFreq = (Number(action.payload.pwm_freq)/1000).toString();
       state.lawReg = action.payload.law_reg;
       state.duty = action.payload.duty;
     },

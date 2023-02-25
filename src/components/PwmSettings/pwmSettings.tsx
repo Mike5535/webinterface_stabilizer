@@ -42,6 +42,7 @@ export const PwmSettings = () => {
         e.preventDefault();
         const body = validateFreq(e);
         if (body) {
+            body.pwm_freq = (body.pwm_freq*1000).toString();
             dispatch(actionSetPwmFreq(body));
         }
     }
