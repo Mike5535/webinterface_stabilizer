@@ -20,7 +20,7 @@ const pfmSlice = createSlice({
         },
         setPfmStateAuto: (state, action: PayloadAction<IPfmStateFromServer>) => {
             state.pulseDur = (Number(action.payload.pulse_duration) * 1e6).toString();
-            state.pfmFreq = (+action.payload.pfm_freq/1000).toFixed(3);
+            state.pfmFreq = (+action.payload.pfm_freq/1000).toString();
         },
     }
 });

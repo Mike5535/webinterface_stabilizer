@@ -204,7 +204,7 @@ export const HysterSettings = () => {
                     <div className='main__settings__row'>
                         Введите выходное напряжение:
                         <form onKeyUp={validateVoltage} onSubmit={handlerVoltage}>
-                            <input className={isVoltageRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={2} />
+                            <input className={isVoltageRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={3} />
                         </form>
                         В
                     </div>
