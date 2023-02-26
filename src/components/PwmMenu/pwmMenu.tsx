@@ -10,7 +10,6 @@ export const PwmMenu = () => {
 
     const handlerLawReg = (e: React.MouseEvent<HTMLDivElement>) => {
         const targetClass = e.currentTarget.className;
-        console.log('targetClass',targetClass)
         let lawReg = '';
         switch (targetClass) {
             case 'pwm__menu__row-one':

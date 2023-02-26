@@ -16,10 +16,10 @@ const pfmSlice = createSlice({
     initialState: { pulseDur: '2', pfmFreq: '0' },
     reducers: {
         setPulseDurSuccess: (state, action: PayloadAction<{ pulse_duration: string }>) => {
-            state.pulseDur = action.payload.pulse_duration;
+            state.pulseDur = (Number(action.payload.pulse_duration) * 1e6).toString();
         },
         setPfmStateAuto: (state, action: PayloadAction<IPfmStateFromServer>) => {
-            state.pulseDur = action.payload.pulse_duration;
+            state.pulseDur = (Number(action.payload.pulse_duration) * 1e6).toString();
             state.pfmFreq = (Number(action.payload.pfm_freq)/1000).toString();
         },
     }
