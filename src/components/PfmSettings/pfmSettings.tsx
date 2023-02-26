@@ -54,7 +54,7 @@ export const PfmSettings = () => {
             voltage = (e.target as HTMLElement).querySelector('input').value;
             isSubmit = false;
         }
-        if (voltage.match(/^\d+$/) && voltage >= 5 && voltage <= 20) {
+        if (voltage.match(/^\d+$/) && voltage >= 0 && voltage <= 20) {
             setVoltageRight(true);
             if (isSubmit) {
                 (e.target as HTMLElement).querySelector('input').value = '';
