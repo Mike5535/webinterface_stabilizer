@@ -40,7 +40,7 @@ function initWebsocket() {
                         return emitter({
                             mode: { type: 'common/switchModeSuccess', payload: msg.mode },
                             state: {
-                                type: 'pwm/setPfmStateAuto', payload: {
+                                type: 'pfm/setPfmStateAuto', payload: {
                                     pulse_duration: msg.pulse_duration,
                                     pfm_freq: msg.pfm_freq,
                                 }

@@ -6,7 +6,7 @@ export const MonitoringInfo = (props = null) => {
     const mode = useSelector((state: IState) => state.common.mode);
     const isActive = useSelector((state: IState) => state.common.isActive);
     const voltage = useSelector((state: IState) => state.common.voltage);
-
+ 
     const pwmFreq = useSelector((state: IState) => state.pwm.pwmFreq);
     const lawReg = useSelector((state: IState) => state.pwm.lawReg);
     const duty = useSelector((state: IState) => state.pwm.duty);

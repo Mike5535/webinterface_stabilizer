@@ -13,14 +13,14 @@ export interface IPfmStateFromServer {
 
 const pfmSlice = createSlice({
     name: 'pfm',
-    initialState: { pulseDur: '2', pfmFreq: '0' },
+    initialState: { pulseDur: '1', pfmFreq: '0' },
     reducers: {
         setPulseDurSuccess: (state, action: PayloadAction<{ pulse_duration: string }>) => {
             state.pulseDur = (Number(action.payload.pulse_duration) * 1e6).toString();
         },
         setPfmStateAuto: (state, action: PayloadAction<IPfmStateFromServer>) => {
             state.pulseDur = (Number(action.payload.pulse_duration) * 1e6).toString();
-            state.pfmFreq = (Number(action.payload.pfm_freq)/1000).toString();
+            state.pfmFreq = (+action.payload.pfm_freq/1000).toFixed(3);
         },
     }
 });

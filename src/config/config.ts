@@ -1,1 +1,1 @@
-export const wsUrl = `ws://${window.location.hostname}/api/websocket`
+export const wsUrl = `ws://192.168.1.35/api/websocket`

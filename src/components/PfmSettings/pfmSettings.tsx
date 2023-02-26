@@ -39,7 +39,7 @@ export const PfmSettings = () => {
     const handlerPulseDur = (e: React.FormEvent) => {
         e.preventDefault();
         const body = validatePulseDur(e);
-        body.pulse_duration = +(body.pulse_duration * 1e-6).toFixed(6);
+        body.pulse_duration = Number(body.pulse_duration * 1e-6).toFixed(6);
         if (body) {
             dispatch(actionSetPulseDur(body));
         }
