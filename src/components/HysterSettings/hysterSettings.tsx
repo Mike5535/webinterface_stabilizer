@@ -56,10 +56,10 @@ export const HysterSettings = () => {
             voltage = (e.target as HTMLElement).querySelector('input').value;
             isSubmit = false;
         }
-        if (voltage.match(/^\d[,]\d+$/)) {
+        if (voltage.match(/^\d+[,]?\d+$/)) {
             voltage = voltage.split(',').join('.');
         }
-        if (voltage.match(/^\d[.,]\d*$/) && voltage >= 0 && voltage <= 20) {
+        if (voltage.match(/^\d+[.,]?\d*$/) && voltage >= 0 && voltage <= 20) {
             setVoltageRight(true);
             if (isSubmit) {
                 (e.target as HTMLElement).querySelector('input').value = '';
@@ -207,7 +207,7 @@ export const HysterSettings = () => {
                     <div className='main__settings__row'>
                         Введите выходное напряжение:
                         <form onKeyUp={validateVoltage} onSubmit={handlerVoltage}>
-                            <input className={isVoltageRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={3} />
+                            <input className={isVoltageRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={4} />
                         </form>
                         В
                     </div>
