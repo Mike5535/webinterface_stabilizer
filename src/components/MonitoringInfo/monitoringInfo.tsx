@@ -1,4 +1,5 @@
 import { IState } from '@/store/store';
+import { changeDot } from '@/utils/valid';
 import React from 'react';
 import { useSelector } from 'react-redux'
 
@@ -41,7 +42,7 @@ export const MonitoringInfo = (props = null) => {
                         Частота:
                     </div>
                     <div className="monitoring__row__field">
-                        {`${pwmFreq} кГц`}
+                        {`${changeDot(pwmFreq)} кГц`}
                     </div>
                 </div>
                 <div className="monitoring__row">
@@ -49,7 +50,7 @@ export const MonitoringInfo = (props = null) => {
                         Коэф. заполнения:
                     </div>
                     <div className="monitoring__row__field">
-                        {`${duty} %`}
+                        {`${changeDot(duty)} %`}
                     </div>
                 </div>
 
@@ -67,7 +68,7 @@ export const MonitoringInfo = (props = null) => {
                         Выходное напряжение:
                     </div>
                     <div className="monitoring__row__field">
-                        {`${voltage} В`}
+                        {`${changeDot(voltage)} В`}
                     </div>
                 </div>
             </>
@@ -98,7 +99,7 @@ export const MonitoringInfo = (props = null) => {
                         Частота:
                     </div>
                     <div className="monitoring__row__field">
-                    {`${pfmFreq} кГц`}
+                    {`${changeDot(pfmFreq)} кГц`}
                     </div>
                 </div>
                 <div className="monitoring__row">
@@ -106,7 +107,7 @@ export const MonitoringInfo = (props = null) => {
                         Длительность импульса:
                     </div>
                     <div className="monitoring__row__field">
-                    {`${pulseDur} мкс`}
+                    {`${changeDot(pulseDur)} мкс`}
                     </div>
                 </div>
                 <div className="monitoring__row">
@@ -114,7 +115,7 @@ export const MonitoringInfo = (props = null) => {
                         Выходное напряжение:
                     </div>
                     <div className="monitoring__row__field">
-                        {`${voltage} В`}
+                        {`${changeDot(voltage)} В`}
                     </div>
                 </div>
             </>
@@ -145,7 +146,7 @@ export const MonitoringInfo = (props = null) => {
                         Окно гистерезиса:
                     </div>
                     <div className="monitoring__row__field">
-                    {`${hysterWindow} В`}
+                    {`${changeDot(hysterWindow)} В`}
                     </div>
                 </div>
                 <div className="monitoring__row">
@@ -153,7 +154,7 @@ export const MonitoringInfo = (props = null) => {
                         Выходное напряжение:
                     </div>
                     <div className="monitoring__row__field">
-                        {`${voltage} В`}
+                        {`${changeDot(voltage)} В`}
                     </div>
                 </div>
             </>

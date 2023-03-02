@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { IState } from '@/store/store';
 import { BackButton } from '@components/BackButton/backButton';
-import { actionSetVoltage, actionSwitchMode } from '@store/actions/commonActions';
+import { actionSwitchMode } from '@store/actions/commonActions';
 import { actionSetHysterWindow } from '@store/actions/hysterActions';
+import { validateVoltage, handlerVoltage } from '@/utils/valid';
 
 export const HysterSettings = () => {
     const dispatch = useDispatch();
@@ -22,12 +23,13 @@ export const HysterSettings = () => {
             hyster_window = (e.target as HTMLInputElement).value;
         } else {
             hyster_window = (e.target as HTMLElement).querySelector('input').value;
-            isSubmit = false;
+            isSubmit = true;
         }
+        console.log('isSubmit',isSubmit)
         if (hyster_window.match(/^\d[,]\d+$/)) {
             hyster_window = hyster_window.split(',').join('.');
         }
-        if (hyster_window.match(/^\d[.,]\d*$/) && hyster_window > 0 && hyster_window < 1) {
+        if (hyster_window.match(/^\d[.,]\d*$/) && hyster_window >= 0.1 && hyster_window <= 1) {
             setHysterWindowRight(true);
             if (isSubmit) {
                 (e.target as HTMLElement).querySelector('input').value = '';
@@ -44,38 +46,6 @@ export const HysterSettings = () => {
         const body = validateHysterWindow(e);
         if (body) {
             dispatch(actionSetHysterWindow(body));
-        }
-    }
-
-    const validateVoltage = (e: React.FormEvent) => {
-        let voltage;
-        let isSubmit = false;
-        if (e.target instanceof HTMLInputElement) {
-            voltage = (e.target as HTMLInputElement).value;
-        } else {
-            voltage = (e.target as HTMLElement).querySelector('input').value;
-            isSubmit = false;
-        }
-        if (voltage.match(/^\d+[,]?\d+$/)) {
-            voltage = voltage.split(',').join('.');
-        }
-        if (voltage.match(/^\d+[.,]?\d*$/) && voltage >= 0 && voltage <= 20) {
-            setVoltageRight(true);
-            if (isSubmit) {
-                (e.target as HTMLElement).querySelector('input').value = '';
-            }
-            return { voltage };
-        }
-
-        voltage ? setVoltageRight(false) : setVoltageRight(true);
-        return null;
-    }
-
-    const handlerVoltage = (e: React.FormEvent) => {
-        e.preventDefault();
-        const body = validateVoltage(e);
-        if (body) {
-            dispatch(actionSetVoltage(body));
         }
     }
 
@@ -198,15 +168,15 @@ export const HysterSettings = () => {
             <div className='main__settings'>
                 <>
                     <div className='main__settings__row'>
-                        Введите окно гистерезиса:
+                        Введите окно гистерезиса (0,1-1В):
                         <form onKeyUp={validateHysterWindow} onSubmit={handlerHysterWindow}>
                             <input className={isHysterWindowRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={5} />
                         </form>
                         В
                     </div>
                     <div className='main__settings__row'>
-                        Введите выходное напряжение:
-                        <form onKeyUp={validateVoltage} onSubmit={handlerVoltage}>
+                    Введите выходное напряжение (0-20В):
+                        <form onKeyUp={validateVoltage.bind(null, setVoltageRight)} onSubmit={handlerVoltage.bind(null, dispatch, setVoltageRight)}>
                             <input className={isVoltageRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={4} />
                         </form>
                         В
