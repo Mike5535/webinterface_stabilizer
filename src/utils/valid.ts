@@ -33,8 +33,8 @@ export const handlerVoltage = (dispatch, setVoltageRight, e: React.FormEvent) =>
 }
 
 export const changeDot = (value) => {
-    if (value.match(/^\d+[.]\d+$/)) {
-        return value.split('.').join(',');
+    if (value.toString().match(/^\d+[.]\d+$/)) {
+        return value.toString().split('.').join(',');
     }
     return value;
 }
