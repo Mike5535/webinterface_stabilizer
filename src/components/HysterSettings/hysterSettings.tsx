@@ -168,14 +168,14 @@ export const HysterSettings = () => {
             <div className='main__settings'>
                 <>
                     <div className='main__settings__row'>
-                        Введите окно гистерезиса (0,1-1В):
+                        Введите окно гистерезиса (0,2-1В):
                         <form onKeyUp={validateHysterWindow} onSubmit={handlerHysterWindow}>
                             <input className={isHysterWindowRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={5} />
                         </form>
                         В
                     </div>
                     <div className='main__settings__row'>
-                    Введите выходное напряжение (0-20В):
+                    Введите выходное напряжение (3-6В):
                         <form onKeyUp={validateVoltage.bind(null, setVoltageRight)} onSubmit={handlerVoltage.bind(null, dispatch, setVoltageRight)}>
                             <input className={isVoltageRight ? 'main__settings__input' : 'main__settings__input_error'} type="text" maxLength={4} />
                         </form>

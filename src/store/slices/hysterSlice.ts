@@ -11,7 +11,7 @@ export interface IHysterStateFromServer {
 
 const pfmSlice = createSlice({
     name: 'hyster',
-    initialState: { hysterWindow: '0.1' },
+    initialState: { hysterWindow: '0.2' },
     reducers: {
         setHysterWindowSuccess: (state, action: PayloadAction<IHysterStateFromServer>) => {
             state.hysterWindow = action.payload.hyster_window;
